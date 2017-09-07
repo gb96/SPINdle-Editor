@@ -1,0 +1,23 @@
+<project name="initialize">
+        <condition property="proj.platform" value="linux">
+           <os name="SunOS"/>
+        </condition>
+        <condition property="proj.platform" value="windows">
+           <os family="windows"/>
+        </condition>
+        <condition property="proj.platform" value="linux">
+           <os name="AIX"/>
+        </condition>
+        <condition property="proj.platform" value="linux">
+           <os name="Linux"/>
+        </condition>
+        <condition property="proj.platform" value="linux">
+           <os name="OS/400"/>
+        </condition>
+        <condition property="proj.platform" value="linux">
+           <os name="HP-UX"/>
+        </condition>
+        <condition property="proj.platform" value="mac">
+           <os family="mac"/>
+        </condition>
+</project>

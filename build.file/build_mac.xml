@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".">
+    <path id="lib.path">
+        <fileset dir="${lib}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="dist">
+        <tstamp>
+            <format property="TODAY" pattern="yyyy-MM-dd HH:mm:ss"/>
+        </tstamp>
+        <jar destfile="${dist}/${proj.name}_${proj.platform}_${version.num}.jar" 
+                duplicate="add"
+                index="true" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="${proj.main}"/>
+                <attribute name="Implementation-Version" value="${version.num}"/>
+                <attribute name="Built-Date" value="${TODAY}"/>
+            </manifest>
+            <fileset dir="${classes}"/>
+            <zipfileset src="${lib}/${lib.spindle}"/>
+            <zipfileset excludes="META-INF/*.SF" src="${lib}/swt.jar" />
+            <zipfileset excludes="META-INF/*.SF" src="${lib}/org.eclipse.core.commands_3.6.0.I20100512-1500.jar" />
+            <zipfileset excludes="META-INF/*.SF" src="${lib}/org.eclipse.jface_3.6.1.M20100825-0800.jar" />
+            <zipfileset excludes="META-INF/*.SF" src="${lib}/org.eclipse.ui.workbench_3.6.1.M20100826-1330.jar" />
+            <zipfileset excludes="META-INF/*.SF" src="${lib}/org.eclipse.equinox.common_3.6.0.v20100503.jar" />
+            <zipfileset excludes="META-INF/*.SF" src="${lib}/org.eclipse.osgi_3.6.1.R36x_v20100806.jar" />
+        </jar>
+    </target>
+
+    <target name="run" depends="dist">
+        <java jar="${dist}/${proj.name}_${proj.platform}_${version.num}.jar" fork="true">
+            <jvmarg value="-d32"/>
+            <jvmarg value="-XstartOnFirstThread"/>
+        </java>	
+<!--
+        <java classname="${proj.main}" fork="true" >
+            <jvmarg value="-XstartOnFirstThread"/>
+            <classpath refid="lib.path"/>
+            <classpath>
+                <pathelement path="${classes}"/>
+            </classpath>
+        </java>	
+-->
+    </target>
+
+</project>

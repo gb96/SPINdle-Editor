@@ -1,0 +1,11 @@
+SPINdle Editor (version 2.0.0)                                       
+Copyright (C) 2009 NICTA Ltd.
+
+SPINdle is freely distributed under the terms of the FSF Lesser GNU Public License (LGPL).
+
+This program comes with ABSOLUTELY NO WARRANTY; This is free software, and you are welcome to redistribute it under certain conditions; for details type: 
+         java -jar spindle-<version>.jar --app.license 
+         
+Third-party software used
+-------------------------
+SPINdle Editor uses SWT for its user interface generation, which is distributed under the terms of the Eclipse Public License (see <a href="http://www.eclipse.org/org/documents/epl-v10.php">http://www.eclipse.org/org/documents/epl-v10.php</a> for details).       

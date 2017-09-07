@@ -1,0 +1,122 @@
+
+================================
+SPINdle Defeasible Theory Editor
+--------------------------------
+SPINdle Defeasible Theory Editor (version 2.2.2)                                       
+Copyright (C) 2009-2013 NICTA Ltd.
+
+This software and its documentation is distributed under the terms of the
+FSF Lesser GNU Public License (see LICESNE for details).
+                  
+This program comes with ABSOLUTELY NO WARRANTY; This is free software, and 
+you are welcome to redistribute it under certain conditions; for details type:                                 
+          java -jar spindleEditor-<version>.jar --app.license       
+
+This release of SPINdle editor works with SPINdle (ver. 2.0.3), and requires
+Eclipse SWT (ver. 3.6) user interface library, and Java 1.6 (or above).
+
+* All libraries included in the package are of 32-bits.
+* Mac users are advised to use the "run.sh" script to start the editor
+  as some special flag controlling the JVM are used.
+
+===========
+Description
+-----------
+This software, written in java, provides an editing interface for generating
+standard defeasible logic theory that can be reasoned by SPINdle.
+
+
+====================
+Using SPINdle Editor
+--------------------
+To use SPINdle editor, type:
+  java -jar spindleEditor-<version>.jar [--options]
+
+where options include:
+    --app.version	    		show software version
+    --app.license	    		show software license
+    --app.credit	    		show credit for library embedded
+
+    --log.level		    		log level (ALL,INFO,FINE,FINEST)
+    --app.showProgress			is show reasoning progress
+    --app.showProgress.timeInterval	show progress time interval
+    --app.saveResult			is save conclusions
+    --app.result.folder			folder for storing conclusions
+
+
+====================
+Building from source
+--------------------
+The SPINdle Editor build system is based on Jakarta Ant, and is rely on a 
+build file written in XML as building instructions.  For more information 
+please refer to "http://ant.apache.org".
+
+1. Third-party library used:
+   SPINdle uses JDOM (ver1.1) for XML document parsing.  License details 
+   can be found from the JDOM library package.
+   
+   SPINdle Editor uses SWT for its user interface generation, which 
+   is distributed under the terms of the Eclipse Public License 
+   (see http://www.eclipse.org/org/documents/epl-v10.php for details).
+   
+   In the SPINdle package, you should find the following jar files under 
+   the <SPINdleEditor_HOME>/lib folder:
+   + JDOM (ver1.1)
+     - jdom.jar
+   + SWT (ver3.4)
+     - org.eclipse.core.commands_<version>.jar
+     - org.eclipse.equinox.common_<version>.jar
+     - org.eclipse.jface_<version>.jar
+     - org.eclipse.ui.workbench_<version>.jar
+     - org.eclipse.osgi_<version>.jar
+
+If everything is right and all the required library is visible, you can 
+then type:
+        ant dist
+to compile the source code and archive it as an executable jar file.        
+      
+        
+2. Build targets
+The build system is not responsible for compiling SPINdle into a jar file,
+but also responsible for creating JavaDoc documentations and other tasks,
+such as:
+compile - compiles the source code (ONLY).
+dist    - compile the source code and archive it as an executable jar file.
+run     - run the editor.
+javadoc - generates the API documentation in ./docs/api.
+clean   - restore the distribution to its original and clean state.
+
+For example, to build the samples, type
+        ant compile
+to generate the API documentation, type
+        ant javadoc
+
+To learn the details of what each target does, please read the build.xml
+file.
+
+NOTE: For Mac user who wants to run the editor in command prompt please add
+      a JVM argument "-XstartOnFirstThread" in the command line.  A script
+      "run.sh" is created for you so that you can execute the editor directly
+      without using ant.
+
+
+=======
+Contact
+-------
+Author: H.-P. Lam (oleklam@gmail.com)
+
+
+Support
+-------
+Any problem with this release can be report to the author directly.  If you
+are sending email to the author make sure to add the [SPINdle Editor] prefix
+to the subject.
+
+Thank you for using SPINdle and SPINdle Editor.
+
+
+Latest Documentation
+--------------------
+SPINdle Editor documentation will be available on the download site very soon.
+
+

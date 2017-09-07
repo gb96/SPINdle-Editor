@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="compile">
+    <property name="base.dir" value="."/>
+    <property name="lib.spindle" value="spindle_2.2.2.jar"/>
+
+    <property name="proj.name" value="spindleEditor"/>
+    <property name="proj.main" value="spindle.Editor"/>
+    <property name="proj.mainPackage" value="spindle"/>
+    <property name="src" value="${base.dir}/src"/>
+    <property name="build" value="${base.dir}/build"/>
+    <property name="classes" value="${build}/classes"/>
+    <property name="dist" value="${base.dir}/dist"/>
+    <property name="docs" value="${base.dir}/docs"/>
+    <property name="javadoc" value="${docs}/api"/>
+    <property name="log" value="${base.dir}/log"/>
+    <property name="packageName" value="spindle.*"/>
+    <property name="packageTitle" value="SPINdle Editor"/>
+    <property name="version.num" value="2.2.2"/>
+    <property name="build.file" value="${base.dir}/build.file"/>
+
+    <property name="lib" value="${base.dir}/lib"/>
+    <property name="resources" value="${base.dir}/src/${proj.mainPackage}/resources"/>
+
+    <path id="lib.path">
+        <fileset dir="${lib}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <import file="${base.dir}/build.file/build_initialize.xml"/>
+
+    <target name="init">
+        <echo message="${proj.platform}"/>
+        <mkdir dir="${build}"/>
+        <mkdir dir="${classes}"/>
+        <mkdir dir="${lib}"/>
+        <mkdir dir="${dist}"/>
+        <mkdir dir="${classes}/${proj.mainPackage}/resources"/>
+
+        <copy todir="${classes}">
+            <fileset dir="${src}">
+                <include name="*"/>
+            </fileset>
+        </copy>
+
+        <copy todir="${classes}/${proj.mainPackage}/resources">
+            <fileset dir="${resources}">
+            <!--<fileset dir="${src}/${proj.mainPackage}/resources"> -->
+                <include name="**/*"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src}" destdir="${classes}" fork="true" includeAntRuntime="false">
+            <classpath refid="lib.path"/>
+        </javac>
+    </target>
+
+    <target name="dist" depends="clean,compile">
+        <ant antfile="${build.file}/build_${proj.platform}.xml" target="dist" dir="."/>
+    </target>
+
+    <target name="run" depends="compile">
+        <ant antfile="${build.file}/build_${proj.platform}.xml" target="run" dir="."/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+        <delete dir="${log}"/>
+        <delete dir="${db}"/>
+        <delete dir="${docs}"/>
+    </target>
+
+    <target name="javadoc">
+        <mkdir dir="${javadoc}"/>
+        <javadoc sourcepath="${src}" 
+                packagenames="${packageName}" windowtitle="${packageTitle}"
+                destdir="${javadoc}" 
+                author="true" version="true" 
+                use="true">
+            <classpath refid="lib.path"/>
+        </javadoc>
+    </target>
+</project>
