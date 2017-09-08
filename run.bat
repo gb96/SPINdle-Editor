@@ -1,4 +1,4 @@
 set version=2.2.2
 
 
-java -jar dist\spindleEditor2_windows_%version%.jar
+java -jar dist\spindleEditor_windows_%version%.jar
