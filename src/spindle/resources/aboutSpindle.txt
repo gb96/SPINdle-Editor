@@ -1,5 +1,5 @@
-SPINdle Editor (version 2.0.0)                                       
-Copyright (C) 2009 NICTA Ltd.
+SPINdle Editor (version 2.2.2)                                       
+Copyright (C) 2009-2017 CSIRO
 
 SPINdle is freely distributed under the terms of the FSF Lesser GNU Public License (LGPL).
 
